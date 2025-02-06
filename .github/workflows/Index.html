@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Purchase!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://www.cabinet.de/fileadmin/user_upload/bilder/schranksysteme/begehbarer-kleiderschrank/Begehbarer-Kleiderschrank-Terra-Superweiss-Galerie.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Zentrierter Container mit mehr Breite */
+        .lang, .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(44, 107, 95, 0.95);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 400px; /* Etwas breiter */
+            max-width: 90%;
+        }
+
+        h1 {
+            color: #f5f8f6;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        /* Buttons für Sprache und Vinted */
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 16px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none; /* Kein Unterstrich */
+            text-align: center; /* Text in der Mitte */
+        }
+
+        .button:hover {
+            background: #e5e5e5;
+            transform: scale(1.05);
+        }
+
+        /* Vinted-Profil-Button */
+        .vinted-button {
+            display: inline-block; /* Behält die Button-Größe bei */
+            text-decoration: none; /* Kein Unterstrich */
+            width: 350px; /* Nimmt nur so viel Platz wie nötig */
+        }
+
+        /* Zurück-Button */
+        .back-button {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sprachwahl -->
+    <div class="lang" id="languageSelection">
+        <h1><strong>Choose your Language</strong></h1>
+        <button class="button" onclick="setLanguage('de')">Deutsch</button>
+        <button class="button" onclick="setLanguage('en')">English</button>
+        <button class="button" onclick="setLanguage('it')">Italiano</button>
+        <button class="button" onclick="setLanguage('fr')">Français</button>
+    </div>
+
+    <!-- Inhalt nach Sprachauswahl -->
+    <div class="container" id="content" style="display: none;">
+        <h1 id="title">Thank You for Your Purchase!</h1>
+        <p id="text1">I truly appreciate your support and hope you enjoy your new item.</p>
+        <p id="text2">If you have any questions or issues, feel free to send me a message on Vinted.</p>
+        <p id="text3">Be sure to check back often – there are always new great items to discover!</p>
+        <p id="text4"><strong>Special Offer:</strong> Get <strong>5% off</strong> your next purchase by sending me a photo of the QR code!</p>
+        
+        <!-- Vinted-Profil-Button ohne Unterstrich -->
+        <a href="https://www.vinted.at/member/197854345" class="button vinted-button" target="_blank" id="btn-text">Visit My Vinted Profile</a>
+        
+        <!-- Zurück-Button -->
+        <button class="back-button" onclick="goBack()">← Back</button>
+    </div>
+
+    <script>
+        const translations = {
+            de: {
+                title: "Danke für deinen Kauf!",
+                text1: "Ich schätze deine Unterstützung und hoffe, du genießt deinen neuen Artikel.",
+                text2: "Falls du Fragen oder Probleme hast, schicke mir eine Nachricht auf Vinted.",
+                text3: "Schau regelmäßig vorbei – es gibt immer neue großartige Artikel zu entdecken!",
+                text4: "<strong>Spezialangebot:</strong> Erhalte <strong>5% Rabatt</strong>, wenn du mir ein Foto vom QR-Code sendest!",
+                btn: "Mein Vinted-Profil besuchen",
+                back: "← Zurück"
+            },
+            en: {
+                title: "Thank You for Your Purchase!",
+                text1: "I truly appreciate your support and hope you enjoy your new item.",
+                text2: "If you have any questions or issues, feel free to send me a message on Vinted.",
+                text3: "Be sure to check back often – there are always new great items to discover!",
+                text4: "<strong>Special Offer:</strong> Get <strong>5% off</strong> your next purchase by sending me a photo of the QR code!",
+                btn: "Visit My Vinted Profile",
+                back: "← Back"
+            },
+            it: {
+                title: "Grazie per il tuo acquisto!",
+                text1: "Apprezzo molto il tuo supporto e spero che tu possa goderti il tuo nuovo articolo.",
+                text2: "Se hai domande o problemi, inviami un messaggio su Vinted.",
+                text3: "Torna spesso – ci sono sempre nuovi articoli fantastici da scoprire!",
+                text4: "<strong>Offerta speciale:</strong> Ottieni uno <strong>sconto del 5%</strong> inviandomi una foto del codice QR!",
+                btn: "Visita il mio profilo Vinted",
+                back: "← Indietro"
+            },
+            fr: {
+                title: "Merci pour votre achat !",
+                text1: "J'apprécie vraiment votre soutien et j'espère que vous profiterez de votre nouvel article.",
+                text2: "Si vous avez des questions ou des problèmes, envoyez-moi un message sur Vinted.",
+                text3: "Revenez souvent – il y a toujours de nouveaux articles intéressants à découvrir !",
+                text4: "<strong>Offre spéciale :</strong> Obtenez <strong>5% de réduction</strong> en m'envoyant une photo du code QR !",
+                btn: "Visitez mon profil Vinted",
+                back: "← Retour"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem("selectedLanguage", lang);
+
+            document.getElementById("title").innerText = translations[lang].title;
+            document.getElementById("text1").innerText = translations[lang].text1;
+            document.getElementById("text2").innerText = translations[lang].text2;
+            document.getElementById("text3").innerText = translations[lang].text3;
+            document.getElementById("text4").innerHTML = translations[lang].text4;
+            document.getElementById("btn-text").innerText = translations[lang].btn;
+            document.querySelector(".back-button").innerText = translations[lang].back;
+
+            document.getElementById("languageSelection").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+
+        function goBack() {
+            document.getElementById("languageSelection").style.display = "block";
+            document.getElementById("content").style.display = "none";
+        }
+    </script>
+</body>
+</html>
